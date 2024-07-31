@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+}
+
+div.main {
+  display: inline-block;
+  min-height: 50vh;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
