@@ -1,5 +1,6 @@
 export function getBaseUrl() {
-  return location.origin + location.pathname.match("^(.*?)(?:(?<=/)articles/[0-9]*/.*)?$")[1];
+  let url = location.origin + location.pathname.replace(/\/articles\/[0-9]*\/.*$/, "/");
+  return url.match("^.*/(?=[^/]*$)")[0];
 }
 
 export function doRequest(method, uri, payload) {

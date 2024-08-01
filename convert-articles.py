@@ -13,6 +13,7 @@ def convert(text):
     return {
         "title": title,
         "content": content,
+        "description": re.sub("(?:<[^>]*>)", "", content)[:100].replace("\n", " "),
         "html": article
     }
 
@@ -154,8 +155,10 @@ def main():
 
         page = page.replace("<!--open graph-->",
             ("<meta property=\"og:title\" content=\"{} / RasPython's Room\" />" + \
+            "<meta property=\"og:description\" content=\"{}\" />" + \
             "<meta property=\"og:url\" content=\"https://raspython3.github.com/homepage/{}\" />").format(
                 article["title"],
+                article["description"],
                 path)
         )
 
@@ -172,7 +175,7 @@ def main():
     article_list = ""
 
     for article in articles:
-        article_list += "<div class=\"article-item\"><h2><a href=\"{}\">{}</a></h2><p>{}</p></div>".format(article[0], article[1]["title"], article[1]["content"].replace("\n", " ")[:100])
+        article_list += "<div class=\"article-item\"><h2><a href=\"{}\">{}</a></h2><p>{}</p></div>".format(article[0], article[1]["title"], article[1]["description"])
 
     with open("articles.html", mode="r+", encoding="utf-8") as f:
         html = f.read()

@@ -1,7 +1,7 @@
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-def run(host="localhost", port=8080):
+def run(host="192.168.3.8", port=8080):
     address = (host, port)
     server = HTTPServer(address, SimpleHTTPRequestHandler)
     server.serve_forever()
