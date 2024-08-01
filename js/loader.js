@@ -17,7 +17,6 @@ function addFooter() {
 }
 
 function loadAll() {
-  prompt("aaa");
   addHeader();
   addFooter();
 }
