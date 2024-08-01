@@ -1,24 +1,53 @@
 <style>
   footer {
-    height: calc(50vh - 8rem);
+    display: flex;
+    height: 15rem;
     background: #333f44;
     color: white;
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  footer > .containers {
     display: inline-flex;
     width: 100%;
+  }
+  .containers > .container {
+    width: 100%;
+    padding: 1rem;
   }
   footer a {
     color: inherit;
   }
+  .footer-copyright {
+    width: 100%;
+    font-size: 90%;
+    text-align: center;
+  }
 </style>
 <footer>
-  <ul>
-    <li>
-      <span class="icon twitter-icon"></span>
-      <a href="x.com/RasPython3">@RasPython3</a>
-    </li>
-    <li>
-      <span class="icon github-icon"></span>
-      <a href="github.com/RasPython3">RasPython3</a>
-    </li>
-  </ul>
+  <div class="containers">
+    <div class="container">
+      <h2>RasPython3's Room</h2>
+      <h4>RasPython3の部屋</h4>
+    </div>
+    <div class="container">
+      <ul>
+        <li>
+          <span class="icon twitter-icon"></span>
+          <a href="https://x.com/RasPython3">@RasPython3</a>
+        </li>
+        <li>
+          <span class="icon github-icon"></span>
+          <a href="https://github.com/RasPython3">RasPython3</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    © 2024 RasPython3 All Rights Reserved.
+  </div>
 </footer>

@@ -1,3 +1,7 @@
+export function getBaseUrl() {
+  return location.origin + (location.pathname.match("(.*)/articles/[0-9]*/.*") || ["", ""])[1];
+}
+
 export function doRequest(method, uri, payload) {
   method = (method || "get").toLowerCase();
 
@@ -7,7 +11,9 @@ export function doRequest(method, uri, payload) {
 
   let request = new XMLHttpRequest();
 
-  let url = new URL(uri, location.href);
+  let base = getBaseUrl();
+
+  let url = new URL(uri, base);
 
   let promise = new Promise((resolve, reject)=>{
     request.addEventListener("load", ()=>resolve(request.response));
