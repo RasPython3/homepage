@@ -1,5 +1,5 @@
 export function getBaseUrl() {
-  return location.origin + (location.pathname.match("(.*)/articles/[0-9]*/.*") || ["", ""])[1];
+  return location.origin + location.pathname.match("^(.*?)(?:/articles/[0-9]*/.*)?$")[1];
 }
 
 export function doRequest(method, uri, payload) {
