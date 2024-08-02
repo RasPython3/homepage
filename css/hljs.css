@@ -1,0 +1,63 @@
+/*!
+  Theme: WAAA
+  Description: Good style for some reason.
+  Author: (c) RasPython3
+  Maintainer: RasPython3
+*/
+pre code.hljs {
+    display:block;
+    overflow-x:auto;
+    padding:1em;
+    margin-top: -0em;
+    line-height: 1.2em;
+}
+code.hljs {
+    padding:3px 5px
+}
+.hljs {
+    background:#000000;
+    color:#ffffff
+}
+.hljs-comment {
+    color:#3333cc;
+    }
+.hljs-punctuation,.hljs-tag {
+    color:#ccca;
+}
+.hljs-tag .hljs-attr,.hljs-tag .hljs-name {
+    color:#ccc;
+}
+.hljs-attribute,.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-name,.hljs-selector-tag {
+    color:#c6e;
+    font-weight:700;
+}
+.hljs-deletion,.hljs-number,.hljs-quote,.hljs-selector-class,.hljs-selector-id,.hljs-template-tag,.hljs-type {
+    color:#d83;
+}
+.hljs-string {
+    color: #f88;
+}
+.hljs-section,.hljs-title {
+    color: #9d6;
+    font-weight:700;
+}
+.hljs-link,.hljs-operator,.hljs-regexp,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-symbol,.hljs-template-variable,.hljs-variable {
+    color:#aaaaff;
+}
+.hljs-literal {
+    color:#3ed;
+}
+.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-code {
+    color: #4db;
+    font-weight: 700;
+}
+.hljs-meta {
+    color: #3ed;
+    font-weight: 700;
+}
+.hljs-emphasis {
+    font-style:italic;
+}
+.hljs-strong {
+    font-weight:700;
+}

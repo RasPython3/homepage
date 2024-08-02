@@ -1,14 +1,33 @@
 <html>
   <head>
-    <title>RasPython's Room</title>
+    <title>RasPython3's Room</title>
     <meta charset="UTF-8">
+    <meta property="og:title" content="記事一覧 / RasPython3's Room" />
+    <meta property="og:description\" content="RasPython3がてきとーにいろんなことを書いているブログ" />
+    <meta property="og:url" content="https://raspython3.github.com/homepage/articles.html" />
     <link href="css/index.css" rel="stylesheet" />
+    <link href="css/hljs.css" rel="stylesheet" />
     <script src="js/loader.js" type="module"></script>
+    <style>
+      .article-item > h2 {
+        margin-bottom: 0;
+      }
+      
+      .article-item > p {
+        margin-top: 0.5rem;
+        color: gray;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
       <h2>記事一覧</h2>
-      <!--articles start--><div class="article-item"><h2><a href="articles/20240801/">記事投稿テスト</a></h2><p>記事の中身 これは太字でこれは斜体になり、これはコードになる さらにこうやって ``` コードブロックや ``` code:test.py のようにプログラムファイルを使ったり、 file:test.</p></div><!--articles end-->
+      <!--articles start--><div class="article-item"><h2><a href="articles/202408021404/">このブログを作った話(計画編)</a></h2><span>2024-08-02 14:04</span><p>こんにちは、このブログを運営(?)している、RasPython3です。最近はらすぴーとも呼んでもらっています。  さて、おとといのことになりますが、ふと思い立ち、「ブログ作っちゃおう」となりました。 </p></div><div class="article-item"><h2><a href="articles/202408010000/">記事投稿テスト</a></h2><span>2024-08-01 00:00</span><p>記事の中身 これは太字でこれは斜体になり、これはコードになる さらにこうやって コードブロックや コードブロックや あとコードブロックなど test.py のようにプログラムファイルを使ったり、 te</p></div><!--articles end-->
     </div>
   </body>
 </html>

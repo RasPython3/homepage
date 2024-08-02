@@ -1,4 +1,5 @@
 import {doRequest, getBaseUrl} from './request.js';
+import {decorateCodeBlocks} from './codeblock.js';
 
 function addHeader() {
   let promise = doRequest("get", "header.html");
@@ -19,6 +20,7 @@ function addFooter() {
 function loadAll() {
   addHeader();
   addFooter();
+  decorateCodeBlocks();
 }
 
 document.addEventListener("DOMContentLoaded", loadAll);
