@@ -3,7 +3,7 @@
   --side-margin: 15%;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 28rem) {
   :root {
     --side-margin: 0.5rem;
   }
@@ -71,6 +71,7 @@ div.codeblock-wrapper > .codeblock {
   padding: 0.5rem;
   color: white;
   background-color: #111f22;
+  overflow-x: scroll;
 }
 
 div.codeblock-header > input[type="button"] {
