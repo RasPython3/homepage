@@ -1,5 +1,12 @@
 :root {
   font-size: 2vh;
+  --side-margin: 15%;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --side-margin: 0.5rem;
+  }
 }
 
 body {
@@ -9,9 +16,11 @@ body {
 div.main {
   display: inline-block;
   min-height: calc(100vh - 23rem);
-  width: 70%;
+  width: calc(100% - 2 * var(--side-margin));
   margin-left: 15%;
+  margin-left: var(--side-margin);
   margin-right: 15%;
+  margin-right: var(--side-margin);
   padding: 1rem;
   box-sizing: border-box;
 }
