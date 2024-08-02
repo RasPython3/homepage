@@ -1,12 +1,16 @@
 :root {
-  font-size: 2vh;
   --side-margin: 15%;
 }
 
-@media (max-width: 28rem) {
+@media (max-width: 540px) {
   :root {
     --side-margin: 0.5rem;
   }
+}
+
+html {
+  font-size: 16px;
+  text-size-adjust: 100%;
 }
 
 body {
