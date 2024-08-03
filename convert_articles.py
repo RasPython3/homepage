@@ -1,5 +1,9 @@
 # coding: utf-8
-import glob, os, re
+import os
+import datetime
+import glob
+import re
+import json
 
 def convert(text, date="投稿日時不明"):
     title = text.split("\n")[0]
@@ -218,22 +222,19 @@ def main():
 
     article_list = ""
 
-    for fname in reversed(sorted(glob.glob("articles/sources/*.txt"))):
-        m = re.match("(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2})-(?P<hour>\\d{2})(?P<minute>\\d{2})\\.txt", fname.replace("\\", "/").split("/")[-1])
+    for fname in reversed(sorted(glob.glob("articles/sources/*"))):
+        m = re.match("(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2})-(?P<hour>\\d{2})(?P<minute>\\d{2})", fname.replace("\\", "/").split("/")[-1])
         if m == None:
-            print("invalid file name")
+            print("invalid post id")
             continue
 
-        with open(fname, mode="r", encoding="utf-8") as f:
-            source = f.read()
+        with open(fname + "/meta.json", mode="r", encoding="utf-8") as f:
+            meta = json.load(f)
 
-        date_str = "{}-{:02}-{:02} {:02}:{:02}".format(
-            int(m.groups()[0]),
-            int(m.groups()[1]),
-            int(m.groups()[2]),
-            int(m.groups()[3]),
-            int(m.groups()[4])
-        )
+        date_str = datetime.datetime.strptime(meta["created_time"], "%Y-%m-%d %H:%M:%S %z").strftime("%Y-%m-%d %H:%M")
+
+        with open(fname + "/content.txt", mode="r", encoding="utf-8") as f:
+            source = meta["title"] + "\n" + f.read()
 
         article = convert(source, date=date_str)
 
@@ -243,12 +244,8 @@ def main():
 
         page = template.replace("<!--article-->", article["html"])
 
-        path = "articles/{:04}{:02}{:02}{:02}{:02}/".format(
-            int(m.groups()[0]),
-            int(m.groups()[1]),
-            int(m.groups()[2]),
-            int(m.groups()[3]),
-            int(m.groups()[4])
+        path = "articles/{}/".format(
+            datetime.datetime.strptime(meta["created_time"], "%Y-%m-%d %H:%M:%S %z").strftime("%Y%m%d%H%M")
         )
 
         page = page.replace("<!--open graph-->",

@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>RasPython3's Room</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="RasPython3's Room" />
+    <meta property="og:description" content="RasPython3がてきとーにいろんなことを書いているブログ" />
+    <meta property="og:url" content="https://raspython3.github.com/homepage/" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/hljs.css" rel="stylesheet" />
+    <script src="js/loader.js" type="module"></script>
+    <style>
+      .editor-wrapper {
+        display: block;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        align-items: stretch;
+        height: 32rem;
+      }
+      .editor-header {
+        height: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      .tab {
+        width: 100%;
+        text-align: center;
+      }
+      .tab > input[type="radio"] {
+        display: none;
+      }
+      .tab > label {
+        display: inline-block;
+        width: 100%;
+      }
+      div.main .containers {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: calc(100% - 1.5rem);
+      }
+      div.main .containers > .container {
+        width: 50%;
+        height: 100%;
+      }
+
+      form > input[name="title"] {
+        display: block;
+        width: 100%;
+        font-size: 1.5rem;
+        height: 3rem;
+        line-height: 3rem;
+      }
+      form > textarea {
+        display: block;
+        width: 100%;
+        height: calc(100% - 3rem);
+      }
+
+      div.preview {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+      }
+    </style>
+    <script type="module">
+      import {doRequest} from "./js/request.js";
+      import {decorateCodeBlocks} from "./js/codeblock.js";
+
+      function updatePreview() {
+        doRequest("post",
+          location.href,
+          JSON.stringify({
+            msgtype: "preview",
+            content: document.querySelector(".container.page-source textarea").value
+          })
+        ).then((previewHTML)=>{
+          let previewWindow = document.querySelector(".container.page-preview > div.preview");
+          previewWindow.innerHTML = "<h2>" + document.querySelector(".container.page-source input[name=\"title\"]").value + "</h2>" + previewHTML;
+          decorateCodeBlocks(previewWindow);
+        });
+      }
+
+      function postArticle() {
+        doRequest(
+          "post",
+          location.href,
+          JSON.stringify({
+            msgtype: "save",
+            title: document.querySelector(".container.page-source input[name=\"title\"]").value,
+            content: document.querySelector(".container.page-source textarea").value
+          })
+        )
+      }
+
+      document.addEventListener("DOMContentLoaded", ()=>{
+        document.querySelector(".container.page-source input[name=\"title\"]").addEventListener("input", updatePreview);
+        document.querySelector(".container.page-source textarea").addEventListener("input", updatePreview);
+
+        document.querySelector(".editor-header > input[name=\"post\"]").addEventListener("click", postArticle);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      <h2>記事を投稿する</h2>
+      <p>このページはローカルでサーバーを立ち上げている場合にのみ動作します。</p>
+      <div class="editor-wrapper">
+        <div class="editor-header">
+          <input type="button" value="投稿" name="post">
+          <input type="button" value="クリア" onclick="el=document.querySelector('.container.page-source textarea');el.value='';el.dispatchEvent(new Event('input'))">
+          <!--<span class="tab">
+            <input type="radio" id="tab-source" value="source" name="tab-switch">
+            <label for="tab-source">ソースコード</label>
+          </span>
+          <span class="tab">
+            <input type="radio" id="tab-preview" value="preview" name="tab-switch">
+            <label for="tab-preview">プレビュー</label>
+          </span>-->
+        </div>
+        <div class="containers">
+          <div class="container page-source">
+            <form>
+              <input type="text" name="title">
+              <textarea name="content"></textarea>
+            </form>
+          </div>
+          <div class="container page-preview">
+            <div class="preview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

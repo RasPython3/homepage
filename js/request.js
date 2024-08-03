@@ -6,7 +6,7 @@ export function getBaseUrl() {
 export function doRequest(method, uri, payload) {
   method = (method || "get").toLowerCase();
 
-  if (!["get"].includes(method)) {
+  if (!["get", "post"].includes(method)) {
     throw "method '" + method + "' is not supported";
   }
 

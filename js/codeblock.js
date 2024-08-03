@@ -1,7 +1,7 @@
 import {hljs} from './highlight.min.js';
 
-export function decorateCodeBlocks() {
-  document.querySelectorAll("pre.codeblock").forEach((block)=>{
+export function decorateCodeBlocks(target=document) {
+  target.querySelectorAll("pre.codeblock").forEach((block)=>{
     var lang = [...[...block.classList].filter((clsname)=>clsname.startsWith("lang-")), "lang-text"][0].slice(5);
 
     if (hljs.getLanguage(lang) == undefined) {
