@@ -11,6 +11,11 @@
     <script src="/homepage/js/loader.js" type="module"></script>
   </head>
   <body>
+    <script>
+      if (location.path != "/homepage/404.html") {
+        location.path = "/homepage/404.html";
+      }
+    </script>
     <div class="main">
       <h2>404 Not Found</h2>
       <p>お探しのページは存在しないようです。残念でしたね。</p>
